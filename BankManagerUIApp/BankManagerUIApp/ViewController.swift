@@ -54,6 +54,15 @@ class ViewController: UIViewController {
         return label
     }()
     
+    // MARK: - ScrollView
+    
+    lazy var onCallScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(onCallStackView)
+        return scrollView
+    }()
+    
     // MARK: - StackView
     
     lazy var buttonStackView: UIStackView = {
@@ -65,7 +74,7 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    lazy var clientStateStackView: UIStackView = {
+    lazy var clientStateLabelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -81,7 +90,37 @@ class ViewController: UIViewController {
         stackView.spacing = 8
         stackView.addArrangedSubview(buttonStackView)
         stackView.addArrangedSubview(taskTimerLabel)
-        stackView.addArrangedSubview(clientStateStackView)
+        stackView.addArrangedSubview(clientStateLabelStackView)
+        stackView.addArrangedSubview(allClientStackView)
+        return stackView
+    }()
+    
+    lazy var allClientStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .top
+        stackView.distribution = .fillEqually
+        stackView.addArrangedSubview(onCallScrollView)
+        stackView.addArrangedSubview(onTaskStackView)
+        return stackView
+    }()
+    
+    lazy var onCallStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    lazy var onTaskStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -102,7 +141,30 @@ extension ViewController {
         NSLayoutConstraint.activate([
             headerStackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             headerStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            headerStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+            headerStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            headerStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            
+            onCallScrollView.topAnchor.constraint(equalTo: allClientStackView.topAnchor),
+            onCallScrollView.leadingAnchor.constraint(equalTo: allClientStackView.leadingAnchor),
+//            onCallScrollView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.5),
+            onCallScrollView.bottomAnchor.constraint(equalTo: allClientStackView.bottomAnchor),
+            
+            onCallStackView.widthAnchor.constraint(equalTo: onCallScrollView.frameLayoutGuide.widthAnchor),
+            onCallStackView.leadingAnchor.constraint(equalTo: onCallScrollView.leadingAnchor),
+            onCallStackView.topAnchor.constraint(equalTo: onCallScrollView.topAnchor),
+            onCallStackView.bottomAnchor.constraint(equalTo: onCallScrollView.bottomAnchor)
         ])
+        
+        for  _ in 1...100 {
+            let label = UILabel()
+            label.text = "aaaaaaa"
+            onCallStackView.addArrangedSubview(label)
+        }
+        
+        for  _ in 1...10 {
+            let label = UILabel()
+            label.text = "aaaaaaa"
+            onTaskStackView.addArrangedSubview(label)
+        }
     }
 }
