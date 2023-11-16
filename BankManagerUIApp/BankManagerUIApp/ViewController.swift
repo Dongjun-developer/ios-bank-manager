@@ -14,12 +14,12 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bankView.delegate = self
+        self.bankView.delegate = self
     }
     
     override func loadView() {
         super.loadView()
-        bankView = BankView(frame: self.view.frame)
+        self.bankView = BankView(frame: self.view.frame)
         self.view = bankView
     }
     
@@ -43,12 +43,7 @@ final class ViewController: UIViewController {
     }
     
     private func makeTimeString(minutes: Int, seconds: Int, milliseconds: Int) -> String {
-        var timeString = ""
-        timeString += String(format: "%02d", minutes)
-        timeString += ":"
-        timeString += String(format: "%02d", seconds)
-        timeString += ":"
-        timeString += String(format: "%03d", milliseconds)
+        let timeString = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds)):\(String(format: "%03d", milliseconds))"
         return timeString
     }
     
