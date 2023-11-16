@@ -45,7 +45,7 @@ final class BankView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "업무 시간 - 00:00:000"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.font = UIFont.monospacedSystemFont(ofSize: 24, weight: .regular)
         return label
     }()
     
@@ -172,5 +172,11 @@ extension BankView {
     
     @objc private func tapResetButton() {
         delegate?.reset()
+    }
+}
+
+extension BankView {
+    func updateTimerLabel(_ time: String) {
+        self.taskTimerLabel.text = "업무 시간 - \(time)"
     }
 }
