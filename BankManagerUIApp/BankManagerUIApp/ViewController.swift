@@ -54,6 +54,7 @@ final class ViewController: UIViewController {
     private func timerReset() {
         self.timeCount = 0
         self.timer?.invalidate()
+        self.timer = nil
         self.bankView.updateTimerLabel("00:00:000")
     }
 }
