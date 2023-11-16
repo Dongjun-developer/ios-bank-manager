@@ -12,6 +12,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bankView.delegate = self
     }
     
     override func loadView() {
@@ -20,4 +21,15 @@ final class ViewController: UIViewController {
         self.view = bankView
     }
 
+}
+
+
+extension ViewController: ButtonActionDelegate {
+    func startTask(_ stackView: UIStackView) {
+        
+    }
+    
+    func reset() {
+        
+    }
 }

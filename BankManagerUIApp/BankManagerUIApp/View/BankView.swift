@@ -8,7 +8,9 @@
 import UIKit
 
 final class BankView: UIView {
-
+    
+    weak var delegate: ButtonActionDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
@@ -25,6 +27,7 @@ final class BankView: UIView {
         let button = UIButton()
         button.setTitle("고객 10명 추가", for: .normal)
         button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(tapAddClientButton), for: .touchUpInside)
         return button
     }()
     
@@ -32,6 +35,7 @@ final class BankView: UIView {
         let button = UIButton()
         button.setTitle("초기화", for: .normal)
         button.setTitleColor(.red, for: .normal)
+        button.addTarget(self, action: #selector(tapResetButton), for: .touchUpInside)
         return button
     }()
     
@@ -156,5 +160,17 @@ final class BankView: UIView {
             onCallStackView.topAnchor.constraint(equalTo: self.onCallScrollView.topAnchor),
             onCallStackView.bottomAnchor.constraint(equalTo: self.onCallScrollView.bottomAnchor)
         ])
+    }
+}
+
+
+extension BankView {
+    
+    @objc private func tapAddClientButton() {
+        delegate?.startTask(onCallStackView)
+    }
+    
+    @objc private func tapResetButton() {
+        delegate?.reset()
     }
 }
