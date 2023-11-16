@@ -10,7 +10,7 @@ final class ViewController: UIViewController {
     
     private var bankView: BankView!
     private var timer: Timer?
-    private var timeCount = 0
+    private let bankManager: BankManagable = BankManager(loanClerkCount: 2, depositClerkCount: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,8 @@ final class ViewController: UIViewController {
     }
     
     @objc private func timerCounter() {
-        timeCount += 1
+        self.bankManager.updateTotalWorkTime()
+        let timeCount = Int(bankManager.getTotalWorkTime())
         let timeTuple = milliSecondToMinutesSecondMillisecond(with: timeCount)
         let timeString = makeTimeString(minutes: timeTuple.0, seconds: timeTuple.1, milliseconds: timeTuple.2)
         self.bankView.updateTimerLabel(timeString)
@@ -52,7 +53,7 @@ final class ViewController: UIViewController {
     }
     
     private func timerReset() {
-        self.timeCount = 0
+        self.bankManager.resetTotalWorkTime()
         self.timer?.invalidate()
         self.timer = nil
         self.bankView.updateTimerLabel("00:00:000")

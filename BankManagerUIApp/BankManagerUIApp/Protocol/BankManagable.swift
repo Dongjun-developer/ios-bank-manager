@@ -11,4 +11,6 @@ protocol BankManagable {
     func startWork()
     func recept(for client: Client)
     func getTotalWorkTime() -> Double
+    func updateTotalWorkTime()
+    func resetTotalWorkTime()
 }

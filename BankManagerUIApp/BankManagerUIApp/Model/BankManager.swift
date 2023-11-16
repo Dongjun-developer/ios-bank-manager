@@ -41,6 +41,14 @@ final class BankManager: BankManagable {
         return self.totalWorkTime
     }
     
+    func updateTotalWorkTime() {
+        self.totalWorkTime += 1
+    }
+    
+    func resetTotalWorkTime() {
+        self.totalWorkTime = 0
+    }
+    
     private func callClient(semaphore: DispatchSemaphore, group: DispatchGroup) {
         semaphore.wait()
         guard let client = clientQueue.dequeue() else { return }
