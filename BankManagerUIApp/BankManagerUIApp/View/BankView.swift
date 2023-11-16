@@ -23,7 +23,7 @@ final class BankView: UIView {
     
     // MARK: - Button
     
-    lazy var addClientButton: UIButton = {
+    private lazy var addClientButton: UIButton = {
         let button = UIButton()
         button.setTitle("고객 10명 추가", for: .normal)
         button.setTitleColor(.blue, for: .normal)
@@ -31,7 +31,7 @@ final class BankView: UIView {
         return button
     }()
     
-    lazy var resetButton: UIButton = {
+    private lazy var resetButton: UIButton = {
         let button = UIButton()
         button.setTitle("초기화", for: .normal)
         button.setTitleColor(.red, for: .normal)
@@ -41,7 +41,7 @@ final class BankView: UIView {
     
     // MARK: - Label
     
-    lazy var taskTimerLabel: UILabel = {
+    private lazy var taskTimerLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "업무 시간 - 00:00:000"
@@ -49,7 +49,7 @@ final class BankView: UIView {
         return label
     }()
     
-    lazy var onCallLabel: UILabel = {
+    private lazy var onCallLabel: UILabel = {
         let label = UILabel()
         label.text = "대기중"
         label.textColor = .white
@@ -59,7 +59,7 @@ final class BankView: UIView {
         return label
     }()
     
-    lazy var onTaskLabel: UILabel = {
+    private lazy var onTaskLabel: UILabel = {
         let label = UILabel()
         label.text = "업무중"
         label.textColor = .white
@@ -71,7 +71,7 @@ final class BankView: UIView {
     
     // MARK: - ScrollView
     
-    lazy var onCallScrollView: UIScrollView = {
+    private lazy var onCallScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(self.onCallStackView)
@@ -80,7 +80,7 @@ final class BankView: UIView {
     
     // MARK: - StackView
 
-    lazy var buttonStackView: UIStackView = {
+    private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -89,7 +89,7 @@ final class BankView: UIView {
         return stackView
     }()
     
-    lazy var clientStateLabelStackView: UIStackView = {
+    private lazy var clientStateLabelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -98,7 +98,7 @@ final class BankView: UIView {
         return stackView
     }()
     
-    lazy var headerStackView: UIStackView = {
+    private lazy var headerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -110,7 +110,7 @@ final class BankView: UIView {
         return stackView
     }()
     
-    lazy var allClientStackView: UIStackView = {
+    private lazy var allClientStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .top
@@ -120,7 +120,7 @@ final class BankView: UIView {
         return stackView
     }()
     
-    lazy var onCallStackView: UIStackView = {
+    private lazy var onCallStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -130,7 +130,7 @@ final class BankView: UIView {
         return stackView
     }()
     
-    lazy var onTaskStackView: UIStackView = {
+    private lazy var onTaskStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
