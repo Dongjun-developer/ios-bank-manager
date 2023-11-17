@@ -65,9 +65,11 @@ extension ViewController: ButtonActionDelegate {
     func startTask(_ stackView: UIStackView) {
         self.startTimer()
         for i in 1...10 {
-            let client = receptionClient(id: i)
-            self.bankManager.recept(for: client)
+            let client = self.receptionClient(id: i)
+            let label = self.makeClientLabel(number: client.id)
+            self.bankManager.recept(for: client, clientLabel: label)
         }
+        
         self.bankManager.startWork()
     }
     

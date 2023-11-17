@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Client: CustomStringConvertible {
+struct Client: CustomStringConvertible, Hashable {
     let id: Int
     let taskType: TaskType
     

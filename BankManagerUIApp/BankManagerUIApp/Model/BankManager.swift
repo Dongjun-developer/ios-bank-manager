@@ -8,7 +8,9 @@ import UIKit
 
 final class BankManager: BankManagable {
     private var clientQueue = Queue<Client>()
+    private var clientDictionary = Dictionary<Client, UILabel>()
     private var totalWorkTime = 0.0
+    private var dq = DispatchQueue(label: "dq", qos: .utility, attributes: .concurrent)
     private let loanSemaphore: DispatchSemaphore
     private let depositSemaphore: DispatchSemaphore
     weak var delegate: BankUIDelgate?
@@ -18,24 +20,28 @@ final class BankManager: BankManagable {
         self.depositSemaphore = DispatchSemaphore(value: depositClerkCount)
     }
     
-    func recept(for client: Client) {
+    func recept(for client: Client, clientLabel: UILabel) {
         self.clientQueue.enqueue(client)
+        self.clientDictionary[client] = clientLabel
     }
+    
     
     func startWork() {
         let group = DispatchGroup()
         
         while self.clientQueue.isEmpty == false {
             guard let client = self.clientQueue.dequeue() else { return }
-            switch client.taskType {
-            case .loan:
-                self.callClient(semaphore: loanSemaphore, group: group, client: client)
-            case .deposit:
-                self.callClient(semaphore: depositSemaphore, group: group, client: client)
+            dq.async {
+                switch client.taskType {
+                case .loan:
+                    self.callClient(semaphore: self.loanSemaphore, group: group, client: client)
+                case .deposit:
+                    self.callClient(semaphore: self.depositSemaphore, group: group, client: client)
+                }
             }
         }
         
-        group.wait()
+        //group.wait()
     }
     
     func getTotalWorkTime() -> Double {
@@ -51,38 +57,31 @@ final class BankManager: BankManagable {
     }
     
     private func callClient(semaphore: DispatchSemaphore, group: DispatchGroup, client: Client) {
-      
-
+        let clientLabel = self.clientDictionary[client]!
+        DispatchQueue.main.async {
+            self.delegate?.startTask(clientLabel)
+        }
         semaphore.wait()
-        DispatchQueue.global().async(group: group) {
-//        guard let client = self.clientQueue.dequeue() else { return }
-            self.changeState(client: client, group: group)
+        DispatchQueue.main.async {
+            self.delegate?.changeTaskState(clientLabel)
+        }
+        print("hi")
+        
+        //            Thread.sleep(forTimeInterval: client.taskType.requiredTime)
+        DispatchQueue.main.asyncAfter(deadline: .now() + client.taskType.requiredTime) {
+            self.delegate?.finishTask(clientLabel)
             semaphore.signal()
         }
-        group.wait()
     }
     
-    private func changeState(client: Client, group: DispatchGroup) {
-        DispatchQueue.main.async {
-//            print("\(client)")
-            guard let label = self.delegate?.makeClientLabel(number: client.id) else { return }
-            self.delegate?.startTask(label)
-            self.working(for: client.taskType.requiredTime, clientLabel: label, group: group)
-        }
+    private func working(for time: Double, clientLabel: UILabel, group: DispatchGroup) {
+        
     }
     
     private func task(for client: Client, clientLabel: UILabel, group: DispatchGroup) {
         print(WorkState.start(client: client))
         self.working(for: client.taskType.requiredTime, clientLabel: clientLabel, group: group)
         print(WorkState.end(client: client))
-    }
-    
-    private func working(for time: Double, clientLabel: UILabel, group: DispatchGroup) {
-        self.delegate?.changeTaskState(clientLabel)
-        DispatchQueue.global().async(group: group) {
-            Thread.sleep(forTimeInterval: time)
-        }
-        self.delegate?.finishTask(clientLabel)
     }
 }
 

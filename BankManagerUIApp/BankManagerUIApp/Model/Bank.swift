@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Bank {
     private let bankManager: BankManagable
@@ -28,7 +29,7 @@ struct Bank {
         for i in 1...count {
             guard let taskType = TaskType.allCases.randomElement() else { return }
             let client = Client(id: i, taskType: taskType)
-            self.bankManager.recept(for: client)
+            self.bankManager.recept(for: client, clientLabel: UILabel())
         }
     }
 }
