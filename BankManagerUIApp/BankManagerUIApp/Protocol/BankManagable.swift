@@ -8,6 +8,8 @@
 import Foundation
 
 protocol BankManagable {
+    var delegate: BankUIDelgate? { get set }
+    
     func startWork()
     func recept(for client: Client)
     func getTotalWorkTime() -> Double

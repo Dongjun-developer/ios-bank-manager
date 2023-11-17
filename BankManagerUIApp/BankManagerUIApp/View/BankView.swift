@@ -120,7 +120,7 @@ final class BankView: UIView {
         return stackView
     }()
     
-    private lazy var onCallStackView: UIStackView = {
+    lazy var onCallStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -130,7 +130,7 @@ final class BankView: UIView {
         return stackView
     }()
     
-    private lazy var onTaskStackView: UIStackView = {
+    lazy var onTaskStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -176,6 +176,7 @@ extension BankView {
 }
 
 extension BankView {
+    
     func updateTimerLabel(_ time: String) {
         self.taskTimerLabel.text = "업무 시간 - \(time)"
     }

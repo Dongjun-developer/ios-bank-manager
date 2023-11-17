@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F6DA39D2B06FBC7007E6888 /* BankUIDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6DA39C2B06FBC7007E6888 /* BankUIDelgate.swift */; };
 		7F6EAA602B05E1A600AFCF81 /* BankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EAA5F2B05E1A600AFCF81 /* BankView.swift */; };
 		7F6EAA622B05E54000AFCF81 /* ButtonActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EAA612B05E54000AFCF81 /* ButtonActionDelegate.swift */; };
 		7F6EAA672B06011300AFCF81 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EAA632B06011300AFCF81 /* Bank.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F6DA39C2B06FBC7007E6888 /* BankUIDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankUIDelgate.swift; sourceTree = "<group>"; };
 		7F6EAA5F2B05E1A600AFCF81 /* BankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankView.swift; sourceTree = "<group>"; };
 		7F6EAA612B05E54000AFCF81 /* ButtonActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonActionDelegate.swift; sourceTree = "<group>"; };
 		7F6EAA632B06011300AFCF81 /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				7F6EAA6B2B06012800AFCF81 /* BankManagable.swift */,
 				7F6EAA612B05E54000AFCF81 /* ButtonActionDelegate.swift */,
+				7F6DA39C2B06FBC7007E6888 /* BankUIDelgate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				7F6EAA6E2B06013E00AFCF81 /* Queue.swift in Sources */,
 				7F6EAA692B06011300AFCF81 /* BankManager.swift in Sources */,
 				C7694E3F259C3E9F0053667F /* ViewController.swift in Sources */,
+				7F6DA39D2B06FBC7007E6888 /* BankUIDelgate.swift in Sources */,
 				7F6EAA672B06011300AFCF81 /* Bank.swift in Sources */,
 				C7694E3B259C3E9F0053667F /* AppDelegate.swift in Sources */,
 				7F6EAA6A2B06011300AFCF81 /* TaskType.swift in Sources */,

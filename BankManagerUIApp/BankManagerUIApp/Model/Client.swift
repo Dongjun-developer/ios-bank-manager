@@ -8,7 +8,7 @@
 import Foundation
 
 struct Client: CustomStringConvertible {
-    private let id: Int
+    let id: Int
     let taskType: TaskType
     
     init(id: Int, taskType: TaskType) {
@@ -17,6 +17,6 @@ struct Client: CustomStringConvertible {
     }
     
     var description: String {
-        "\(self.id)번 고객"
+        "\(self.id) - \(self.taskType)"
     }
 }
