@@ -5,3 +5,10 @@
 // 
 
 import Foundation
+
+let bankProcess = BankProcess(loanClerkCount: 1, depositClerkCount: 2)
+
+bankProcess.run()
+
+
+
